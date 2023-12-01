@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+
+:root {
+    --background-color: #293447;
+    --font-color: #B8C6DC;
+    --fundo-color: #E3F2FD;
+    --background-escuro-color: #212837;
+    --food-color: #FF003D;
+    --snake-color: #60CBFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nova Square', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--fundo-color);
+}
+
+.wrapper {
+    width: 65vmin;
+    height: 70vmin;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    border-radius: 5px;
+    background: var(--background-color);
+}
+
+.game-details {
+    color: var(--font-color);
+    font-size: 1.2rem;
+    padding: 20px 27px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.play-board {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template: repeat(30, 1fr) / repeat(30, 1fr);
+    background: var(--background-escuro-color);
+}
+
+.food {
+    background: var(--food-color);
+}
+
+.head {
+    background: var(--snake-color);
+}
+
