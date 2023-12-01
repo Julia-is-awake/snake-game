@@ -1,6 +1,9 @@
 const playBoard = document.querySelector(".play-board");
 const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".high-score");
+const botaoMais = document.querySelector(".mais");
+const botaoMenos = document.querySelector(".menos");
+const velocidadeElement = document.querySelector(".velocidadeElement");
 
 let GameOver = false;
 let foodX, foodY;
@@ -9,6 +12,12 @@ let snakeBody = [];
 let velocityX = 0, velocityY = 0;
 let setIntervalId;
 let score = 0;
+
+//pegando o valor do intervalo do armazenamento local
+let valorIntervalo = localStorage.getItem("valorIntervalo") || 25;
+velocidadeElement.innerText = `Velocidade: ${valorIntervalo}`;
+
+let intervalo = localStorage.getItem("intervalo") || 125;
 
 //pegando o highscore do armazenamento local
 let highScore = localStorage.getItem("high-score") || 0;
@@ -66,7 +75,6 @@ const initGame = () => {
     for (let i = snakeBody.length - 1; i > 0; i--) {
         //tacando pra frente os valores dos elementos no corpo da cobra por um
         snakeBody[i] = snakeBody[i - 1];
-       
     }
 
     snakeBody[0] = [snakeX, snakeY]; //primeiro elemento da cobra vai pra posição atual dela
@@ -88,12 +96,35 @@ const initGame = () => {
             GameOver = true;
         }
     }
-
+    
     playBoard.innerHTML = htmlMarkup; 
 }
 
 //chamando as funções
 changeFoodPosition();
-setIntervalId = setInterval(initGame, 125); //a cobra vai se mover de 125 milissegundos em 125 milissegundos, é a velocidade
+setIntervalId = setInterval(initGame, intervalo); //a cobra vai se mover de 125 milissegundos em 125 milissegundos, é a velocidade
 
 document.addEventListener("keydown", changeDirection)
+
+//botão pra aumentar e diminuir a velocidade
+botaoMais.addEventListener("click", () => {
+    if (valorIntervalo >= 1 && valorIntervalo <= 49)
+    {
+        intervalo = Number(intervalo) - 5; //como o localStorage armazena em string tem que transformar pra número :(
+        valorIntervalo = Number(valorIntervalo) + 1;
+        localStorage.setItem("intervalo", intervalo); //atualizando o localStorage
+        localStorage.setItem("valorIntervalo", valorIntervalo);
+        velocidadeElement.innerText = `Velocidade: ${valorIntervalo}`;
+    }
+});
+
+botaoMenos.addEventListener("click", () => {
+    if (valorIntervalo >= 2 && valorIntervalo <= 50)
+    {
+        intervalo = Number(intervalo) + 5; //como o localStorage armazena em string tem que transformar pra número :(
+        valorIntervalo = Number(valorIntervalo) - 1;
+        localStorage.setItem("intervalo", intervalo);
+        localStorage.setItem("valorIntervalo", valorIntervalo);
+        velocidadeElement.innerText = `Velocidade: ${valorIntervalo}`;
+    }
+});

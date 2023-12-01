@@ -54,6 +54,27 @@ h1 {
     background: var(--background-escuro-color);
 }
 
+.velocidade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.velocidade button {
+    margin: 0 20px;
+    padding: 0.5rem 1rem;
+    background: var(--background-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    color: var(--font-color);
+}
+
+.velocidade button:hover {
+    cursor: pointer;
+}
+
 .food {
     background: var(--food-color);
 }
