@@ -20,8 +20,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     min-height: 100vh;
     background: var(--fundo-color);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .wrapper {
